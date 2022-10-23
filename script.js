@@ -11,13 +11,17 @@ const getCategories = async (url) => {
 getCategories('http://localhost:3001/hydra-member').then(data => {
 	console.log(data)
 	const Categories = data.map(item => {
-		console.log(item.categories)
 		return (`
 		<div>
 			<div>
-				<h3>${item.name}</h3>
+				<h4>${item.name}</h4>
 				<div>
-					<h4>${item.categories}</h4>
+					<h4>${item.categories && item.categories.map((item) => {
+                  return (`
+                  <h4>${item.name}</h4>
+                  <div>${item.categories && item.categories.map((item)=>item.name)}</div>
+                  `)
+               })}</h4>
 				</div>
 			</div>
 		</div>
